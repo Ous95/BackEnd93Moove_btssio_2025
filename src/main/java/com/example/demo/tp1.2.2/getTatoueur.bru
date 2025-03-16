@@ -1,0 +1,16 @@
+meta {
+  name: getTatoueur
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:8080/tatoueur
+  body: none
+  auth: basic
+}
+
+auth:basic {
+  username: test
+  password: test
+}
