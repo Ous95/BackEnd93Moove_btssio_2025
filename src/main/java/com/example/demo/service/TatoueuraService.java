@@ -28,7 +28,7 @@ public class TatoueuraService {
     }
 
     //Afficher un tatoueur par ID
-    public Tatoueura afficherTatoueur(int id) throws NotFoundException {
+    public Tatoueura afficherTatoueura(int id) throws NotFoundException {
         return tatoueuraRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Tatoueur non trouvé"));
     }
