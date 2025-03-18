@@ -21,8 +21,12 @@ public class Projet {
     @JoinColumn(name="id_tatoueur")
     private Tatoueur tatoueur;
     @ManyToOne
+    @JoinColumn(name="id_tatoueura")
+    private Tatoueura tatoueura;
+    @ManyToOne
     @JoinColumn(name="id_client")
     private Client client;
+
 
     public Projet() {
     }
