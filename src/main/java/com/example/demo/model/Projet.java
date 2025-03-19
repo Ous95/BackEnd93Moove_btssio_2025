@@ -27,6 +27,11 @@ public class Projet {
     @JoinColumn(name="id_client")
     private Client client;
 
+    @ManyToOne
+    @JoinColumn(name="id_adherent")
+    private Adherent adherent;
+
+
 
     public Projet() {
     }

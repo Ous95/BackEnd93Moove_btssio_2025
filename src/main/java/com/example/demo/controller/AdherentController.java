@@ -1,7 +1,10 @@
 package com.example.demo.controller;
 import com.example.demo.exception.NotFoundException;
+import com.example.demo.model.Adherent;
 import com.example.demo.model.Tatoueura;
+import com.example.demo.repository.AdherentRepository;
 import com.example.demo.repository.TatoueuraRepository;
+import com.example.demo.service.AdherentService;
 import com.example.demo.service.TatoueuraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,11 +21,11 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-public class TatoueuraController {
+public class AdherentController {
     @Autowired
-    private TatoueuraRepository tatoueuraRepository;
+    private AdherentRepository adherentRepository;
     @Autowired
-    private TatoueuraService tatoueuraService;
+    private AdherentService adherentService;
 
     //une liste de Tatoueurs déjà définie « en dur »
     //private List<Tatoueur> listeTatoueurs = new ArrayList<>();
@@ -43,16 +46,16 @@ public class TatoueuraController {
     }
 */
 
-    @GetMapping("/tatoueura")
-    public List<Tatoueura> getTatoueurs(@RequestParam(required = false) String style) {
-        return tatoueuraService.getTatoueurs(style);
+    @GetMapping("/adherent")
+    public List<Adherent> getAdherent(@RequestParam(required = false) String style) {
+        return adherentService.getAdherent(style);
     }
 
 
 
-    @GetMapping("/tatoueura/{id}")
-    public Tatoueura afficherTatoueur(@PathVariable int id) throws NotFoundException {
-        return this.tatoueuraRepository.findById(id).orElseThrow(() -> new NotFoundException("Tatoueur non trouvé"));
+    @GetMapping("/adherent/{id}")
+    public Adherent afficherAdherent(@PathVariable int id) throws NotFoundException {
+        return this.adherentRepository.findById(id).orElseThrow(() -> new NotFoundException("Tatoueur non trouvé"));
     }
 
    /* @PostMapping("/tatoueurs")
@@ -62,30 +65,30 @@ public class TatoueuraController {
     */
 
     //seulement l'admin peut ajouter un tatoueur
-    @PostMapping("/tatoueura")
+    @PostMapping("/adherent")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public Tatoueura ajouterTatoueura(@RequestBody Tatoueura nouveauTatoueura) {
-        return tatoueuraService.ajouterTatoueura(nouveauTatoueura);
+    public Adherent ajouterAdherent(@RequestBody Adherent nouveauAdherent) {
+        return adherentService.ajouterAdherent(nouveauAdherent);
     }
 
-    @PutMapping("/tatoueura/{id}")
+    @PutMapping("/adherent/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public Tatoueura modifierTatoueur(@RequestBody Tatoueura tatoueuraAModif, @PathVariable int id)
+    public Adherent modifierAdherent(@RequestBody Adherent adherentModif, @PathVariable int id)
             throws NotFoundException{
-        Tatoueura ta = this.tatoueuraRepository.findById(id).orElseThrow(() -> new
+        Adherent a = this.adherentRepository.findById(id).orElseThrow(() -> new
                 NotFoundException("Tatoueur non trouvé"));
-        ta.setNom(tatoueuraAModif.getNom());
-        ta.setStyle(tatoueuraAModif.getStyle());
-        return this.tatoueuraRepository.save(ta);
+        a.setNom(adherentModif.getNom());
+        a.setStyle(adherentModif.getStyle());
+        return this.adherentRepository.save(a);
     }
 
 
-    @DeleteMapping("/tatoueura/{id}")
+    @DeleteMapping("/adherent/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public void supprimerTatoueura(@PathVariable int id) throws NotFoundException{
-        Tatoueura ta = this.tatoueuraRepository.findById(id).orElseThrow(() -> new
+    public void supprimerAdherent(@PathVariable int id) throws NotFoundException{
+        Adherent a = this.adherentRepository.findById(id).orElseThrow(() -> new
                 NotFoundException("Tatoueur non trouvé"));
-        this.tatoueuraRepository.delete(ta);
+        this.adherentRepository.delete(a);
     }
 
 }

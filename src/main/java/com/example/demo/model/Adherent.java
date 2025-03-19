@@ -7,13 +7,13 @@ import java.util.List;
 //Annotation JPA entité
 @Entity
 //Annotation Table
-@Table(name = "Tatoueura")
-public class Tatoueura {
+@Table(name = "Adherent")
+public class Adherent {
     //Annotation qui indique que ce champs est la clé primaire
     @Id
 //Annotation qui indique que la clé primaire est créée automatiquement
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @SequenceGenerator(name="tatoueura_generator", sequenceName = "tatoueura_id_seq")
+    @SequenceGenerator(name="adherent_generator", sequenceName = "adherent_id_seq")
     private int id;
     //Annotation qui indique que nom est un attribut de la table
     @Column
@@ -21,22 +21,21 @@ public class Tatoueura {
     //Idem, attribut
     @Column
     private String style;
-    @Column
-    private String marsupillami;
-    @OneToMany(mappedBy = "tatoueura", cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "adherent", cascade = CascadeType.ALL)
     private List<Projet> projets;
 
 
 
     //Constructeur vide obligatoire
-    public Tatoueura(){
+    public Adherent(){
     }
     //2e constructeur
-    public Tatoueura(int id, String nom, String style, String marsupillami) {
+    public Adherent(int id, String nom, String style) {
         this.id = id;
         this.nom = nom;
         this.style=style;
-        this.marsupillami=marsupillami;
+
     }
     public int getId() {
         return id;
@@ -56,12 +55,7 @@ public class Tatoueura {
     public void setStyle(String style) {
         this.style = style;
     }
-    public String getMarsupillami() {
-        return this.marsupillami;
-    }
-    public void setMarsupillami(String marsupillami) {
-        this.style = marsupillami;
-    }
+
 
 ////ajouter une liste de projets en attribut
 //    @OneToMany(mappedBy = "tatoueur", cascade = CascadeType.ALL)
