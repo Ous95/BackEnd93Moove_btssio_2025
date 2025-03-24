@@ -2,8 +2,6 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 
-import java.util.Set;
-
 @Entity
 //Annotation Table
 @Table(name = "projet")
@@ -18,11 +16,11 @@ public class Projet {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name="id_tatoueur")
-    private Tatoueur tatoueur;
+    @JoinColumn(name="id_sport")
+    private Sport sport;
     @ManyToOne
-    @JoinColumn(name="id_tatoueura")
-    private Tatoueura tatoueura;
+    @JoinColumn(name="id_activite")
+    private Activite activite;
     @ManyToOne
     @JoinColumn(name="id_client")
     private Client client;

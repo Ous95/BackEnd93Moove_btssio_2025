@@ -23,8 +23,8 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests((requests) -> requests
                         //uniquement aux pages /tatoueurs et /tatoueurs/1,2… d’être accessibles
-                        .requestMatchers("/tatoueur/**","tatoueurs/*").permitAll()
-                        .requestMatchers("/tatoueura/**","tatoueurss/*").permitAll()
+                        .requestMatchers("/sport/**","sports/*").permitAll()
+                        .requestMatchers("/activite /**","activites/*").permitAll()
                         .anyRequest().authenticated())
                 //Désactive la protection contre les attaques crsf
                 .csrf(AbstractHttpConfigurer::disable)

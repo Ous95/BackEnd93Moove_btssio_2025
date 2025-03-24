@@ -1,15 +1,13 @@
 package com.example.demo.controller;
 import com.example.demo.exception.NotFoundException;
-import com.example.demo.model.Tatoueur;
-import com.example.demo.repository.TatoueurRepository;
-import com.example.demo.service.TatoueurService;
+import com.example.demo.model.Activite;
+import com.example.demo.repository.ActiviteRepository;
+import com.example.demo.service.ActiviteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.web.bind.annotation.*;
 
 //import java.util.Arrays;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -18,11 +16,11 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-public class TatoueurController {
+public class ActiviteController {
     @Autowired
-    private TatoueurRepository tatoueurRepository;
+    private ActiviteRepository activiteRepository;
     @Autowired
-    private TatoueurService tatoueurService;
+    private ActiviteService activiteService;
 
     //une liste de Tatoueurs déjà définie « en dur »
     //private List<Tatoueur> listeTatoueurs = new ArrayList<>();
@@ -43,14 +41,16 @@ public class TatoueurController {
     }
 */
 
-    @GetMapping("/tatoueur")
-    public List<Tatoueur> getTatoueurs(@RequestParam(required = false) String style) {
-        return tatoueurService.getTatoueurs(style);
+    @GetMapping("/activite")
+    public List<Activite> getActivites(@RequestParam(required = false) String style) {
+        return activiteService.getActivites(style);
     }
 
-    @GetMapping("/tatoueur/{id}")
-    public Tatoueur afficherTatoueur(@PathVariable int id) throws NotFoundException {
-        return this.tatoueurRepository.findById(id).orElseThrow(() -> new NotFoundException("Tatoueur non trouvé"));
+
+
+    @GetMapping("/activite/{id}")
+    public Activite afficherActivite(@PathVariable int id) throws NotFoundException {
+        return this.activiteRepository.findById(id).orElseThrow(() -> new NotFoundException("Tatoueur non trouvé"));
     }
 
    /* @PostMapping("/tatoueurs")
@@ -60,30 +60,30 @@ public class TatoueurController {
     */
 
     //seulement l'admin peut ajouter un tatoueur
-    @PostMapping("/tatoueur")
+    @PostMapping("/activite")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public Tatoueur ajouterTatoueur(@RequestBody Tatoueur nouveauTatoueur) {
-        return tatoueurService.ajouterTatoueur(nouveauTatoueur);
+    public Activite ajouterActivite(@RequestBody Activite nouveauActivite) {
+        return activiteService.ajouterActivite(nouveauActivite);
     }
 
-    @PutMapping("/tatoueur/{id}")
+    @PutMapping("/activite/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public Tatoueur modifierTatoueur(@RequestBody Tatoueur tatoueurAModif, @PathVariable int id)
+    public Activite modifierActivite(@RequestBody Activite activiteModif, @PathVariable int id)
             throws NotFoundException{
-        Tatoueur t = this.tatoueurRepository.findById(id).orElseThrow(() -> new
+        Activite a = this.activiteRepository.findById(id).orElseThrow(() -> new
                 NotFoundException("Tatoueur non trouvé"));
-        t.setNom(tatoueurAModif.getNom());
-        t.setStyle(tatoueurAModif.getStyle());
-        return this.tatoueurRepository.save(t);
+        a.setNom(activiteModif.getNom());
+        a.setStyle(activiteModif.getStyle());
+        return this.activiteRepository.save(a);
     }
 
 
-    @DeleteMapping("/tatoueur/{id}")
+    @DeleteMapping("/activite/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public void supprimerTatoueur(@PathVariable int id) throws NotFoundException{
-        Tatoueur t = this.tatoueurRepository.findById(id).orElseThrow(() -> new
+    public void supprimerActivite(@PathVariable int id) throws NotFoundException{
+        Activite a = this.activiteRepository.findById(id).orElseThrow(() -> new
                 NotFoundException("Tatoueur non trouvé"));
-        this.tatoueurRepository.delete(t);
+        this.activiteRepository.delete(a);
     }
 
 }
