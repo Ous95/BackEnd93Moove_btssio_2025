@@ -7,7 +7,7 @@ import java.util.List;
 //Annotation JPA entité
 @Entity
 //Annotation Table
-@Table(name = "Sport")
+@Table(name = "sport")
 public class Sport {
     //Annotation qui indique que ce champs est la clé primaire
     @Id
