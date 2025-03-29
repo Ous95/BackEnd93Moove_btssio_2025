@@ -24,9 +24,6 @@ public class Projet {
     @JoinColumn(name="id_sport")
     private Sport sport;
 
-    @ManyToOne
-    @JoinColumn(name="id_adherent")
-    private Adherent adherent;
 
 
 
