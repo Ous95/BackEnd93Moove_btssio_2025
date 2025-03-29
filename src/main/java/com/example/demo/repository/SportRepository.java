@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface SportRepository extends JpaRepository<Sport,Integer> {
-    List<Sport> findByStyle(String style);
+    List<Sport> findByHoraire(String horaire);
 }

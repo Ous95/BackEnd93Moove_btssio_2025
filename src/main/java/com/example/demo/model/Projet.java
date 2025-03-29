@@ -15,19 +15,20 @@ public class Projet {
     @Column
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name="id_sport")
-    private Sport sport;
+
     @ManyToOne
     @JoinColumn(name="id_activite")
     private Activite activite;
+
     @ManyToOne
-    @JoinColumn(name="id_client")
-    private Client client;
+    @JoinColumn(name="id_sport")
+    private Sport sport;
 
     @ManyToOne
     @JoinColumn(name="id_adherent")
     private Adherent adherent;
+
+
 
 
 

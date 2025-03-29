@@ -1,4 +1,5 @@
 package com.example.demo.model;
+
 //Bibliothèque les bdd
 import jakarta.persistence.*;
 
@@ -7,7 +8,7 @@ import java.util.List;
 //Annotation JPA entité
 @Entity
 //Annotation Table
-@Table(name = "activite")
+@Table(name = "Activite")
 public class Activite {
     //Annotation qui indique que ce champs est la clé primaire
     @Id
@@ -20,21 +21,19 @@ public class Activite {
     private String nom;
     //Idem, attribut
     @Column
-    private String style;
+    private String horaire;
     @OneToMany(mappedBy = "activite", cascade = CascadeType.ALL)
     private List<Projet> projets;
-
 
 
     //Constructeur vide obligatoire
     public Activite(){
     }
     //2e constructeur
-    public Activite(int id, String nom, String style) {
+    public Activite(int id, String nom, String horaire) {
         this.id = id;
         this.nom = nom;
-        this.style=style;
-
+        this.horaire=horaire;
     }
     public int getId() {
         return id;
@@ -48,15 +47,14 @@ public class Activite {
     public void setNom(String nom) {
         this.nom = nom;
     }
-    public String getStyle() {
-        return this.style;
+    public String getHoraire() {
+        return this.horaire;
     }
-    public void setStyle(String style) {
-        this.style = style;
+    public void setHoraire(String horaire) {
+        this.horaire = horaire;
     }
-
 
 ////ajouter une liste de projets en attribut
-//    @OneToMany(mappedBy = "tatoueur", cascade = CascadeType.ALL)
+//    @OneToMany(mappedBy = "activite", cascade = CascadeType.ALL)
 //    private List<Projet> projets;
 }

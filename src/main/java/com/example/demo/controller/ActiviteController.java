@@ -1,4 +1,5 @@
 package com.example.demo.controller;
+
 import com.example.demo.exception.NotFoundException;
 import com.example.demo.model.Activite;
 import com.example.demo.repository.ActiviteRepository;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-//Nous aurons bien sûr dès le départ notre TatoueurController qui aura pour
+//Nous aurons bien sûr dès le départ notre activiteController qui aura pour
 //annotation que c’est une API Rest
 
 @RestController
@@ -22,44 +23,21 @@ public class ActiviteController {
     @Autowired
     private ActiviteService activiteService;
 
-    //une liste de Tatoueurs déjà définie « en dur »
-    //private List<Tatoueur> listeTatoueurs = new ArrayList<>();
 
-    //premier get
-    /*@GetMapping("/tatoueurs")
-    public List<Tatoueur> getTatoueurs() {
-        return this.tatoueurRepository.findAll();
-    }
-*/
-   /* @GetMapping("/tatoueurs")
-    public List<Tatoueur> getTatoueurs(@RequestParam(required = false) String style) {
-        if(style!=null){
-            return this.tatoueurRepository.findByStyle(style);
-        }else{
-            return this.tatoueurRepository.findAll();
-        }
-    }
-*/
 
     @GetMapping("/activite")
-    public List<Activite> getActivites(@RequestParam(required = false) String style) {
-        return activiteService.getActivites(style);
+    public List<Activite> getActivites(@RequestParam(required = false) String horaire) {
+        return activiteService.getActivites(horaire);
     }
-
-
 
     @GetMapping("/activite/{id}")
     public Activite afficherActivite(@PathVariable int id) throws NotFoundException {
-        return this.activiteRepository.findById(id).orElseThrow(() -> new NotFoundException("Tatoueur non trouvé"));
+        return this.activiteRepository.findById(id).orElseThrow(() -> new NotFoundException("Activite non trouvé"));
     }
 
-   /* @PostMapping("/tatoueurs")
-    public Tatoueur ajouterTatoueur(@RequestBody Tatoueur nouveauTatoueur){
-        return this.tatoueurRepository.save(nouveauTatoueur);
-    }
-    */
 
-    //seulement l'admin peut ajouter un tatoueur
+
+    //seulement l'admin peut ajouter un activite
     @PostMapping("/activite")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Activite ajouterActivite(@RequestBody Activite nouveauActivite) {
@@ -68,12 +46,12 @@ public class ActiviteController {
 
     @PutMapping("/activite/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public Activite modifierActivite(@RequestBody Activite activiteModif, @PathVariable int id)
+    public Activite modifierActivite(@RequestBody Activite activiteAModif, @PathVariable int id)
             throws NotFoundException{
         Activite a = this.activiteRepository.findById(id).orElseThrow(() -> new
-                NotFoundException("Tatoueur non trouvé"));
-        a.setNom(activiteModif.getNom());
-        a.setStyle(activiteModif.getStyle());
+                NotFoundException("activite non trouvé"));
+        a.setNom(activiteAModif.getNom());
+        a.setHoraire(activiteAModif.getHoraire());
         return this.activiteRepository.save(a);
     }
 
@@ -82,9 +60,10 @@ public class ActiviteController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void supprimerActivite(@PathVariable int id) throws NotFoundException{
         Activite a = this.activiteRepository.findById(id).orElseThrow(() -> new
-                NotFoundException("Tatoueur non trouvé"));
+                NotFoundException("activite non trouvé"));
         this.activiteRepository.delete(a);
     }
 
 }
+
 

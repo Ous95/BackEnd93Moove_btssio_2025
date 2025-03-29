@@ -1,4 +1,5 @@
 package com.example.demo.model;
+
 //Bibliothèque les bdd
 import jakarta.persistence.*;
 
@@ -20,22 +21,19 @@ public class Adherent {
     private String nom;
     //Idem, attribut
     @Column
-    private String style;
-
+    private String prenom;
     @OneToMany(mappedBy = "adherent", cascade = CascadeType.ALL)
     private List<Projet> projets;
-
 
 
     //Constructeur vide obligatoire
     public Adherent(){
     }
     //2e constructeur
-    public Adherent(int id, String nom, String style) {
+    public Adherent(int id, String nom, String prenom) {
         this.id = id;
         this.nom = nom;
-        this.style=style;
-
+        this.prenom=prenom;
     }
     public int getId() {
         return id;
@@ -49,15 +47,14 @@ public class Adherent {
     public void setNom(String nom) {
         this.nom = nom;
     }
-    public String getStyle() {
-        return this.style;
+    public String getPrenom() {
+        return this.prenom;
     }
-    public void setStyle(String style) {
-        this.style = style;
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
-
 
 ////ajouter une liste de projets en attribut
-//    @OneToMany(mappedBy = "tatoueur", cascade = CascadeType.ALL)
+//    @OneToMany(mappedBy = "adherent", cascade = CascadeType.ALL)
 //    private List<Projet> projets;
 }

@@ -20,7 +20,7 @@ public class Sport {
     private String nom;
     //Idem, attribut
     @Column
-    private String style;
+    private String horaire;
     @OneToMany(mappedBy = "sport", cascade = CascadeType.ALL)
     private List<Projet> projets;
 
@@ -29,10 +29,10 @@ public class Sport {
     public Sport(){
     }
     //2e constructeur
-    public Sport(int id, String nom, String style) {
+    public Sport(int id, String nom, String horaire) {
         this.id = id;
         this.nom = nom;
-        this.style=style;
+        this.horaire=horaire;
     }
     public int getId() {
         return id;
@@ -46,11 +46,11 @@ public class Sport {
     public void setNom(String nom) {
         this.nom = nom;
     }
-    public String getStyle() {
-        return this.style;
+    public String getHoraire() {
+        return this.horaire;
     }
-    public void setStyle(String style) {
-        this.style = style;
+    public void setHoraire(String horaire) {
+        this.horaire = horaire;
     }
 
 ////ajouter une liste de projets en attribut

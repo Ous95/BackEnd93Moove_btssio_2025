@@ -1,5 +1,4 @@
 package com.example.demo.service;
-
 import com.example.demo.exception.NotFoundException;
 import com.example.demo.model.Adherent;
 import com.example.demo.repository.AdherentRepository;
@@ -13,39 +12,39 @@ public class AdherentService {
     @Autowired
     private AdherentRepository adherentRepository;
 
-    // Obtenir tous les tatoueurs ou filtrer par style
-    public List<Adherent> getAdherent(String style) {
-        if (style != null) {
-            return adherentRepository.findByStyle(style);
+    // Obtenir tous les adherents ou filtrer par prenom
+    public List<Adherent> getAdherents(String prenom) {
+        if (prenom != null) {
+            return adherentRepository.findByPrenom(prenom);
         } else {
             return adherentRepository.findAll();
         }
     }
 
-    // Ajouter un nouveau tatoueur
+    // Ajouter un nouveau adherent
     public Adherent ajouterAdherent(Adherent nouveauAdherent) {
         return adherentRepository.save(nouveauAdherent);
     }
 
-    //Afficher un tatoueur par ID
+    //Afficher un adherent par ID
     public Adherent afficherAdherent(int id) throws NotFoundException {
         return adherentRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Tatoueur non trouvé"));
+                .orElseThrow(() -> new NotFoundException("Adherent non trouvé"));
     }
 
-    // Modifier un tatoueur existant
-    public Adherent modifierAdherent(int id, Adherent adherentModif) throws NotFoundException {
+    // Modifier un adherent existant
+    public Adherent modifierAdherent(int id, Adherent adherentAModif) throws NotFoundException {
         Adherent adherent = adherentRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Tatoueur non trouvé"));
-        adherent.setNom(adherentModif.getNom());
-        adherent.setStyle(adherentModif.getStyle());
+                .orElseThrow(() -> new NotFoundException("Adherent non trouvé"));
+        adherent.setNom(adherentAModif.getNom());
+        adherent.setPrenom(adherentAModif.getPrenom());
         return adherentRepository.save(adherent);
     }
 
-    // Supprimer un tatoueur
+    // Supprimer un adherent
     public void supprimerAdherent(int id) throws NotFoundException {
         Adherent adherent = adherentRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Tatoueur non trouvé"));
+                .orElseThrow(() -> new NotFoundException("Adherent non trouvé"));
         adherentRepository.delete(adherent);
     }
 }

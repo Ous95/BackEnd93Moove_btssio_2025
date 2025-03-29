@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface ActiviteRepository extends JpaRepository<Activite,Integer> {
-    List<Activite> findByStyle(String style);
+    List<Activite> findByHoraire(String horaire);
 }
