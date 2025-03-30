@@ -1,7 +1,5 @@
 package com.example.demo.controller;
 
-
-
 import com.example.demo.exception.NotFoundException;
 import com.example.demo.model.Adherent;
 import com.example.demo.repository.AdherentRepository;
@@ -14,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-//Nous aurons bien sûr dès le départ notre adherentController qui aura pour
+//Nous aurons bien sûr dès le départ notre AdherentController qui aura pour
 //annotation que c’est une API Rest
 
 @RestController
@@ -50,11 +48,11 @@ public class AdherentController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Adherent modifierAdherent(@RequestBody Adherent adherentAModif, @PathVariable int id)
             throws NotFoundException{
-        Adherent a = this.adherentRepository.findById(id).orElseThrow(() -> new
+        Adherent c = this.adherentRepository.findById(id).orElseThrow(() -> new
                 NotFoundException("adherent non trouvé"));
-        a.setNom(adherentAModif.getNom());
-        a.setHoraire(adherentAModif.getHoraire());
-        return this.adherentRepository.save(a);
+        c.setNom(adherentAModif.getNom());
+        c.setHoraire(adherentAModif.getHoraire());
+        return this.adherentRepository.save(c);
     }
 
 
@@ -67,5 +65,3 @@ public class AdherentController {
     }
 
 }
-
-

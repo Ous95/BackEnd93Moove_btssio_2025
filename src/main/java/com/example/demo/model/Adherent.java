@@ -55,6 +55,6 @@ public class Adherent {
     }
 
 ////ajouter une liste de projets en attribut
-//    @OneToMany(mappedBy = "adherent", cascade = CascadeType.ALL)
+//    @OneToMany(mappedBy = "Adherent", cascade = CascadeType.ALL)
 //    private List<Projet> projets;
 }
