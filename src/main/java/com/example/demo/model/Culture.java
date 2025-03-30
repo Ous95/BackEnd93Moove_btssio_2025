@@ -8,13 +8,13 @@ import java.util.List;
 //Annotation JPA entité
 @Entity
 //Annotation Table
-@Table(name = "Adherent")
-public class Adherent {
+@Table(name = "Culture")
+public class Culture {
     //Annotation qui indique que ce champs est la clé primaire
     @Id
 //Annotation qui indique que la clé primaire est créée automatiquement
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @SequenceGenerator(name="adherent_generator", sequenceName = "adherent_id_seq")
+    @SequenceGenerator(name="culture_generator", sequenceName = "culture_id_seq")
     private int id;
     //Annotation qui indique que nom est un attribut de la table
     @Column
@@ -22,15 +22,15 @@ public class Adherent {
     //Idem, attribut
     @Column
     private String horaire;
-    @OneToMany(mappedBy = "adherent", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "culture", cascade = CascadeType.ALL)
     private List<Projet> projets;
 
 
     //Constructeur vide obligatoire
-    public Adherent(){
+    public Culture(){
     }
     //2e constructeur
-    public Adherent(int id, String nom, String horaire) {
+    public Culture(int id, String nom, String horaire) {
         this.id = id;
         this.nom = nom;
         this.horaire=horaire;
@@ -55,6 +55,6 @@ public class Adherent {
     }
 
 ////ajouter une liste de projets en attribut
-//    @OneToMany(mappedBy = "adherent", cascade = CascadeType.ALL)
+//    @OneToMany(mappedBy = "Culture", cascade = CascadeType.ALL)
 //    private List<Projet> projets;
 }

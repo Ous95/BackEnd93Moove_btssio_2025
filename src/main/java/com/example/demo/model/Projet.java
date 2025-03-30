@@ -28,6 +28,10 @@ public class Projet {
     @JoinColumn(name="id_adherent")
     private Adherent adherent;
 
+    @ManyToOne
+    @JoinColumn(name="id_culture")
+    private Culture culture;
+
 
 
 

@@ -25,6 +25,9 @@ public class SecurityConfig {
                         //uniquement aux pages /tatoueurs et /tatoueurs/1,2… d’être accessibles
                         .requestMatchers("/sport/**","sports/*").permitAll()
                         .requestMatchers("/activite/**","activites/*").permitAll()
+                        .requestMatchers("/adherent/**","adherents/*").permitAll()
+                        .requestMatchers("/culture/**","cultures/*").permitAll()
+
                         .anyRequest().authenticated())
                 //Désactive la protection contre les attaques crsf
                 .csrf(AbstractHttpConfigurer::disable)

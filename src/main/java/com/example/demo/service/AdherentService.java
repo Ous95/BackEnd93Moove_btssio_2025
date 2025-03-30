@@ -12,10 +12,10 @@ public class AdherentService {
     @Autowired
     private AdherentRepository adherentRepository;
 
-    // Obtenir tous les adherents ou filtrer par prenom
-    public List<Adherent> getAdherents(String prenom) {
-        if (prenom != null) {
-            return adherentRepository.findByPrenom(prenom);
+    // Obtenir tous les adherents ou filtrer par horaire
+    public List<Adherent> getAdherents(String horaire) {
+        if (horaire != null) {
+            return adherentRepository.findByHoraire(horaire);
         } else {
             return adherentRepository.findAll();
         }
@@ -37,7 +37,7 @@ public class AdherentService {
         Adherent adherent = adherentRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Adherent non trouvé"));
         adherent.setNom(adherentAModif.getNom());
-        adherent.setPrenom(adherentAModif.getPrenom());
+        adherent.setHoraire(adherentAModif.getHoraire());
         return adherentRepository.save(adherent);
     }
 
