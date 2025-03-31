@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "93mooveBACK",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
