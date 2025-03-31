@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface AdherentRepository extends JpaRepository<Adherent,Integer> {
-    List<Adherent> findByHoraire(String horaire);
+    List<Adherent> findByDate(String date);
 }

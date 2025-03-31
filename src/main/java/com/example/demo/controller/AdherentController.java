@@ -26,8 +26,8 @@ public class AdherentController {
 
 
     @GetMapping("/adherent")
-    public List<Adherent> getAdherents(@RequestParam(required = false) String horaire) {
-        return adherentService.getAdherents(horaire);
+    public List<Adherent> getAdherents(@RequestParam(required = false) String date) {
+        return adherentService.getAdherents(date);
     }
 
     @GetMapping("/adherent/{id}")
@@ -51,7 +51,7 @@ public class AdherentController {
         Adherent c = this.adherentRepository.findById(id).orElseThrow(() -> new
                 NotFoundException("adherent non trouvé"));
         c.setNom(adherentAModif.getNom());
-        c.setHoraire(adherentAModif.getHoraire());
+        c.setDate(adherentAModif.getDate());
         return this.adherentRepository.save(c);
     }
 

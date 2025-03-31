@@ -2,6 +2,7 @@ package com.example.demo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -22,11 +23,13 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        //uniquement aux pages /tatoueurs et /tatoueurs/1,2… d’être accessibles
+                        //permettre l'accès aux pages
+                        .requestMatchers(HttpMethod.POST, "/sport").permitAll()
                         .requestMatchers("/sport/**","sports/*").permitAll()
                         .requestMatchers("/activite/**","activites/*").permitAll()
-                        .requestMatchers("/adherent/**","adherents/*").permitAll()
+
                         .requestMatchers("/culture/**","cultures/*").permitAll()
+                        .requestMatchers("/adherent/**","adherents/*").permitAll()
 
                         .anyRequest().authenticated())
                 //Désactive la protection contre les attaques crsf

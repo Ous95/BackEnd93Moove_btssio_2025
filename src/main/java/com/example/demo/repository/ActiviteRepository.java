@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface ActiviteRepository extends JpaRepository<Activite,Integer> {
-    List<Activite> findByHoraire(String horaire);
+    List<Activite> findByDate(String date);
 }

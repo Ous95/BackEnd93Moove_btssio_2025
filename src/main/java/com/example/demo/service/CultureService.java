@@ -12,10 +12,10 @@ public class CultureService {
     @Autowired
     private CultureRepository cultureRepository;
 
-    // Obtenir tous les cultures ou filtrer par horaire
-    public List<Culture> getCultures(String horaire) {
-        if (horaire != null) {
-            return cultureRepository.findByHoraire(horaire);
+    // Obtenir tous les cultures ou filtrer par date
+    public List<Culture> getCultures(String date) {
+        if (date != null) {
+            return cultureRepository.findByDate(date);
         } else {
             return cultureRepository.findAll();
         }
@@ -37,7 +37,7 @@ public class CultureService {
         Culture culture = cultureRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Culture non trouvé"));
         culture.setNom(cultureAModif.getNom());
-        culture.setHoraire(cultureAModif.getHoraire());
+        culture.setDate(cultureAModif.getDate());
         return cultureRepository.save(culture);
     }
 

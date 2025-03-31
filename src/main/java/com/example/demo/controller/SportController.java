@@ -22,8 +22,8 @@ public class SportController {
 
 
     @GetMapping("/sport")
-    public List<Sport> getSports(@RequestParam(required = false) String horaire) {
-        return sportService.getSports(horaire);
+    public List<Sport> getSports(@RequestParam(required = false) String date) {
+        return sportService.getSports(date);
     }
 
     @GetMapping("/sport/{id}")
@@ -46,7 +46,7 @@ public class SportController {
         Sport s = this.sportRepository.findById(id).orElseThrow(() -> new
                 NotFoundException("Sport non trouvé"));
         s.setNom(sportAModif.getNom());
-        s.setHoraire(sportAModif.getHoraire());
+        s.setDate(sportAModif.getDate());
         return this.sportRepository.save(s);
     }
 

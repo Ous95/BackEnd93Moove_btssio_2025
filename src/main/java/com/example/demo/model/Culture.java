@@ -21,7 +21,7 @@ public class Culture {
     private String nom;
     //Idem, attribut
     @Column
-    private String horaire;
+    private String date;
     @OneToMany(mappedBy = "culture", cascade = CascadeType.ALL)
     private List<Projet> projets;
 
@@ -30,10 +30,10 @@ public class Culture {
     public Culture(){
     }
     //2e constructeur
-    public Culture(int id, String nom, String horaire) {
+    public Culture(int id, String nom, String date) {
         this.id = id;
         this.nom = nom;
-        this.horaire=horaire;
+        this.date=date;
     }
     public int getId() {
         return id;
@@ -47,11 +47,11 @@ public class Culture {
     public void setNom(String nom) {
         this.nom = nom;
     }
-    public String getHoraire() {
-        return this.horaire;
+    public String getDate() {
+        return this.date;
     }
-    public void setHoraire(String horaire) {
-        this.horaire = horaire;
+    public void setDate(String date) {
+        this.date = date;
     }
 
 ////ajouter une liste de projets en attribut

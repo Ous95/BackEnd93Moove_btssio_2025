@@ -12,10 +12,10 @@ public class ActiviteService {
     @Autowired
     private ActiviteRepository activiteRepository;
 
-    // Obtenir tous les activites ou filtrer par horaire
-    public List<Activite> getActivites(String horaire) {
-        if (horaire != null) {
-            return activiteRepository.findByHoraire(horaire);
+    // Obtenir tous les activites ou filtrer par date
+    public List<Activite> getActivites(String date) {
+        if (date != null) {
+            return activiteRepository.findByDate(date);
         } else {
             return activiteRepository.findAll();
         }
@@ -37,7 +37,7 @@ public class ActiviteService {
         Activite activite = activiteRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Activite non trouvé"));
         activite.setNom(activiteAModif.getNom());
-        activite.setHoraire(activiteAModif.getHoraire());
+        activite.setDate(activiteAModif.getDate());
         return activiteRepository.save(activite);
     }
 

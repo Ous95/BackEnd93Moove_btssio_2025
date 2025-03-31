@@ -26,8 +26,8 @@ public class CultureController {
 
 
     @GetMapping("/culture")
-    public List<Culture> getCultures(@RequestParam(required = false) String horaire) {
-        return cultureService.getCultures(horaire);
+    public List<Culture> getCultures(@RequestParam(required = false) String date) {
+        return cultureService.getCultures(date);
     }
 
     @GetMapping("/culture/{id}")
@@ -51,7 +51,7 @@ public class CultureController {
         Culture c = this.cultureRepository.findById(id).orElseThrow(() -> new
                 NotFoundException("culture non trouvé"));
         c.setNom(cultureAModif.getNom());
-        c.setHoraire(cultureAModif.getHoraire());
+        c.setDate(cultureAModif.getDate());
         return this.cultureRepository.save(c);
     }
 

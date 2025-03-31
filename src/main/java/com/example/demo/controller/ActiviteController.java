@@ -26,8 +26,8 @@ public class ActiviteController {
 
 
     @GetMapping("/activite")
-    public List<Activite> getActivites(@RequestParam(required = false) String horaire) {
-        return activiteService.getActivites(horaire);
+    public List<Activite> getActivites(@RequestParam(required = false) String date) {
+        return activiteService.getActivites(date);
     }
 
     @GetMapping("/activite/{id}")
@@ -51,7 +51,7 @@ public class ActiviteController {
         Activite a = this.activiteRepository.findById(id).orElseThrow(() -> new
                 NotFoundException("activite non trouvé"));
         a.setNom(activiteAModif.getNom());
-        a.setHoraire(activiteAModif.getHoraire());
+        a.setDate(activiteAModif.getDate());
         return this.activiteRepository.save(a);
     }
 

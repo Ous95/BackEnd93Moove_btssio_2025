@@ -13,10 +13,10 @@ public class SportService {
     @Autowired
     private SportRepository sportRepository;
 
-    // Obtenir tous les tatoueurs ou filtrer par horaire
-    public List<Sport> getSports(String horaire) {
-        if (horaire != null) {
-            return sportRepository.findByHoraire(horaire);
+    // Obtenir tous les tatoueurs ou filtrer par date
+    public List<Sport> getSports(String date) {
+        if (date != null) {
+            return sportRepository.findByDate(date);
         } else {
             return sportRepository.findAll();
         }
@@ -38,7 +38,7 @@ public class SportService {
         Sport sport = sportRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Sport non trouvé"));
         sport.setNom(sportAModif.getNom());
-        sport.setHoraire(sportAModif.getHoraire());
+        sport.setDate(sportAModif.getDate());
         return sportRepository.save(sport);
     }
 

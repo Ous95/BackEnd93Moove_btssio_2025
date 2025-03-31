@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface CultureRepository extends JpaRepository<Culture,Integer> {
-    List<Culture> findByHoraire(String horaire);
+    List<Culture> findByDate(String date);
 }
