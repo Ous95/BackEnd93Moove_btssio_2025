@@ -27,10 +27,10 @@ public class SecurityConfig {
                         .requestMatchers("/activite/**","activites/*").permitAll()
                         .requestMatchers("/adherent/**","adherents/*").permitAll()
                         .requestMatchers("/culture/**","cultures/*").permitAll()
-
-                        .anyRequest().authenticated())
+                        .anyRequest().authenticated());
                 //Désactive la protection contre les attaques crsf
-                .csrf(AbstractHttpConfigurer::disable)
+
+                http.csrf(AbstractHttpConfigurer::disable)
                 .httpBasic(Customizer.withDefaults());
         return http.build();
     }
